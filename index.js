@@ -17,6 +17,9 @@ app.use(express.json());
 import connDB from "./db/conn.js";
 connDB();
 
+// Routes
+// app.use('/', itemRoute);
+
 app.get("/", (req, res) => {
   res.send("Welcome to the API");
 });
