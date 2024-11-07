@@ -2,6 +2,11 @@ import "dotenv/config";
 // Require connection file to connect
 import mongoose from "mongoose";
 
+// Require Models for delete and create operations
+import User from "../models/user.js";
+import Item from "../models/item.js";
+import Admin from "../models/admin.js";
+
 await mongoose
   .connect(process.env.ATLAS_URI)
   .then(() => {
@@ -10,11 +15,6 @@ await mongoose
   .catch((err) => {
     console.error("Error connecting to MongoDB:", err);
   });
-
-// Require Models for delete and create operations
-import User from "../models/user.js";
-import Item from "../models/item.js";
-import Admin from "../models/admin.js";
 
 try {
   const users = [

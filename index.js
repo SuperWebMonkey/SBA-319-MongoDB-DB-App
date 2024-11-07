@@ -14,6 +14,8 @@ app.use(express.json());
 
 // test db connection
 // import db from "./db/conn.js";
+import connDB from "./db/conn.js";
+connDB();
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API");

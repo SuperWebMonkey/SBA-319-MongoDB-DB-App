@@ -1,6 +1,6 @@
 import express from "express";
-import db from "../db/conn.js";
 import { ObjectId } from "mongodb";
+import db from "../db/conn.js";
 
 const router = express.Router();
 // base path: /grades
