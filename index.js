@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import Seeds from "./db/seed.js";
+import con from "./db/conn.js";
 import userRoute from "./routes/userRoute.js";
 import itemRoute from "./routes/itemRoute.js";
 
@@ -20,8 +21,10 @@ app.use("/users", userRoute);
 app.use("/items", itemRoute);
 //app.use("orders", orderRoute);
 
+await Seeds();
+await con();
+
 app.get("/", (req, res) => {
-  Seeds();
   res.send("Welcome to the API");
 });
 

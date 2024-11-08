@@ -3,7 +3,7 @@ import express from "express";
 
 const router = express.Router();
 
-route.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const admins = await Admins.find();
     res.json(admins);

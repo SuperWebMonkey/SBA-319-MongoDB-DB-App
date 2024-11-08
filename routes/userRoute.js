@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "user not found" });
     }
-    res.status(200).json(order);
+    res.status(200).json(user);
   } catch (err) {
     res.status(500).json({ message: "Error fetching user", error: err });
   }
@@ -31,6 +31,7 @@ router.get("/:id", async (req, res) => {
 // Post request to items
 router.post("/", async (req, res) => {
   try {
+    console.log("body", req.body);
     const { email, password, username, name } = req.body;
 
     if (!email || !password || !username || !name) {
@@ -47,7 +48,7 @@ router.post("/", async (req, res) => {
     await newUser.save();
     res.status(201).json({ message: "new user joined", user: newUser });
   } catch (e) {
-    console.error(error);
+    console.error(e);
     res.status(500).json({ message: "Server error" });
   }
 });
@@ -55,12 +56,16 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    console.log("id", id);
     const newUpdate = req.body;
+    console.log("body", newUpdate);
 
-    const updatedUser = await items.findByIdAndUpdate(id, newUpdate, {
+    const updatedUser = await users.findByIdAndUpdate(id, newUpdate, {
       new: true,
       runValidators: true,
     });
+
+    console.log("updated user", updatedUser);
 
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
@@ -71,8 +76,8 @@ router.put("/:id", async (req, res) => {
       product: updatedUser,
     });
   } catch (e) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
+    console.error(e);
+    res.status(500).json({ message: "Server error. Update Failed" });
   }
 });
 
@@ -82,7 +87,9 @@ router.delete("/:id", async (req, res) => {
     const removedUser = await users.findByIdAndDelete(id);
 
     if (!removedUser) {
-      return res.status(404).json({ message: "User not found" });
+      return res
+        .status(404)
+        .json({ message: "User not found. Cannot delete." });
     }
 
     res.json({
@@ -90,7 +97,7 @@ router.delete("/:id", async (req, res) => {
       removedUser,
     });
   } catch (e) {
-    console.error(error);
+    console.error(e);
     res.status(500).json({ message: "Server error" });
   }
 });

@@ -21,15 +21,32 @@ Each data collection has a get, post, delete, and put operations using mongoose.
 ## Features
 
 - Api routes to different pages
-- Navigate the different pages with the tabs in the left navbar
+- Navigate the different requests using the browser
+- Use postman to get the collection or to make an HTTP request
 
 ## how to use
 
 - Go to the api route
+- Use the postman app or vscode extension
+- Select the http request GET, PUT, POST, DELETE
+- For post and put requests, put in the header Content-Type for the key and
+  application/json for the data.
+- Also for post and put, create an object and add all key value pairs that
+  are necessary for the request. 
 
 ## api endpionts
 
 - localhost:3000 | home
+- localhost:3000/users | shows the entire user collection
+- localhost:3000/users/:id | Show the specific user based on the id
+- localhost:3000/items | shows the entire items collection
+- localhost:3000/items:id | shows the specific item based on id
+- POST localhost:3000/users | POST new user to users
+- PUT localhost:3000/users:id | Updates the specific user
+- DELETE localhost:3000/users:id | Delete the specific user
+- POST localhost:3000/items | POST new item to items
+- PUT localhost:3000/items:id | Updates the specific item
+- DELETE localhost:3000/items:id | Delete the specific item
 
 ## Tech Stack Used
 
