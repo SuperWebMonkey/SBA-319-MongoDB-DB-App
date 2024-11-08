@@ -62,6 +62,11 @@ Each data collection has a get, post, delete, and put operations using mongoose.
 - localhost:3000/users/:id | Show the specific user based on the id
 - localhost:3000/items | shows the entire items collection
 - localhost:3000/items:id | shows the specific item based on id
+- localhost:3000/stores | show all stores
+- localhost:3000/stores:id | show a specific store
+
+- GET localhost:3000/stores | Retrieve all stores
+- GET localhost:3000/stores:id | Retrieve a specific store
 
 - GET localhost:3000/users | returns the list of all users
 - POST localhost:3000/users | POST new user to users

@@ -4,6 +4,7 @@ import Seeds from "./db/seed.js";
 import con from "./db/conn.js";
 import userRoute from "./routes/userRoute.js";
 import itemRoute from "./routes/itemRoute.js";
+import storeRoute from "./routes/storeRoute.js";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -19,7 +20,7 @@ app.use(express.json());
 // Routes
 app.use("/users", userRoute);
 app.use("/items", itemRoute);
-//app.use("orders", orderRoute);
+app.use("/stores", storeRoute);
 
 await Seeds();
 await con();

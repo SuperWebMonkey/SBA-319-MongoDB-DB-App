@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 // Require Models for delete and create operations
 import User from "../models/user.js";
 import Item from "../models/item.js";
-import Admin from "../models/admin.js";
+import Store from "../models/store.js";
 
 const con = async () => {
   try {
@@ -68,11 +68,24 @@ const seed = async () => {
 
     await Item.deleteMany({});
     await User.deleteMany({});
-    await Admin.deleteMany({});
+    await Store.deleteMany({});
 
-    const createdUsers = await User.insertMany(users);
+    const createdUsers = await User.create(users);
 
     console.log("Users: ", createdUsers);
+
+    const stores = [
+      { location: "hicksburg", owner: "Dennis" },
+      { location: "Utopia", owner: "Mr. Perfect" },
+      { location: "Winterfell", owner: "Jon Snow" },
+      { location: "Westerland", owner: "Tyrion Lannister" },
+      { location: "Black Meteor", owner: "Sephiroth" },
+    ];
+
+    const db = mongoose.connection.db;
+    const createdStores = await Store.create(stores);
+
+    console.log("Stores: ", createdStores);
 
     const items = [
       {
@@ -113,7 +126,7 @@ const seed = async () => {
       },
     ];
 
-    const createdItems = await Item.insertMany(items);
+    const createdItems = await Item.create(items);
 
     console.log("Items: ", createdItems);
   } catch (err) {
