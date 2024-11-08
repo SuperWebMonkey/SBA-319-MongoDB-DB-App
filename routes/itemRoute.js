@@ -3,6 +3,29 @@ import express from "express";
 
 const router = express.Router();
 
+app.get("/", async (req, res) => {
+  try {
+    const items = await items.find();
+    res.json(items);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch Items" });
+  }
+});
+
+// GET a single order by ID
+router.get("/:id", async (req, res) => {
+  try {
+    const item = await items.findById(req.params.id);
+
+    if (!item) {
+      return res.status(404).json({ message: "user not found" });
+    }
+    res.status(200).json(item);
+  } catch (err) {
+    res.status(500).json({ message: "Error fetching item", error: err });
+  }
+});
+
 // Post request to items
 router.post("/", async (req, res) => {
   try {
