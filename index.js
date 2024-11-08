@@ -1,7 +1,5 @@
 import express from "express";
 import "dotenv/config";
-import grades from "./routes/grades.js";
-import grades_agg from "./routes/grades_agg.js";
 import Admins from "./models/admin.js";
 import Items from "./models/item.js";
 import Users from "./models/user.js";
@@ -17,24 +15,17 @@ app.use(express.json());
 
 // test db connection
 // import db from "./db/conn.js";
-import connDB from "./db/conn.js";
-connDB();
+// import connDB from "./db/conn.js";
+// connDB();
 
 // Routes
 app.use("/users", userRoute);
 app.use("/items", itemRoute);
+//app.use("orders", orderRoute);
 
 app.get("/", (req, res) => {
+  Seeds();
   res.send("Welcome to the API");
-});
-
-app.get("/admin", async (req, res) => {
-  try {
-    const admins = await Admins.find();
-    res.json(admins);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch Admins" });
-  }
 });
 
 //Global Error handling middlware
