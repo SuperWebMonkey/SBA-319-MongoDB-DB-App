@@ -3,10 +3,10 @@ import express from "express";
 
 const router = express.Router();
 
-app.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const items = await items.find();
-    res.json(items);
+    const allItems = await items.find();
+    res.json(allItems);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch Items" });
   }

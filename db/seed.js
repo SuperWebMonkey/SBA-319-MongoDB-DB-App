@@ -1,20 +1,30 @@
 import "dotenv/config";
 // Require connection file to connect
 import mongoose from "mongoose";
-import con from "./conn.js";
+// import con from "./conn.js";
 
 // Require Models for delete and create operations
 import User from "../models/user.js";
 import Item from "../models/item.js";
 import Admin from "../models/admin.js";
 
-const seed = async () => {
+const con = async () => {
   try {
-    con();
+    const con = await mongoose.connect(process.env.ATLAS_URI);
+    console.log(`MongoDB Connected: ${con.connection.host}`);
+  } catch (e) {
+    console.error("Error connecting to MongoDB:", e);
+  }
+};
+
+const seed = async () => {
+  await con();
+
+  try {
     const users = [
       {
         email: "john@doe.com",
-        password: "123456",
+        password: "12345678",
         username: "johndoe123",
         name: "John Doe",
       },
@@ -60,7 +70,7 @@ const seed = async () => {
     await User.deleteMany({});
     await Admin.deleteMany({});
 
-    const createdUsers = await User.create(users);
+    const createdUsers = await User.insertMany(users);
 
     console.log("Users: ", createdUsers);
 
@@ -103,13 +113,13 @@ const seed = async () => {
       },
     ];
 
-    const createdItems = await Item.create(items);
+    const createdItems = await Item.insertMany(items);
 
     console.log("Items: ", createdItems);
   } catch (err) {
     console.log(err);
   } finally {
-    await con.connection.close();
+    await mongoose.connection.close();
   }
 };
 

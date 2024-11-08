@@ -1,8 +1,5 @@
 import express from "express";
 import "dotenv/config";
-import Admins from "./models/admin.js";
-import Items from "./models/item.js";
-import Users from "./models/user.js";
 import Seeds from "./db/seed.js";
 import userRoute from "./routes/userRoute.js";
 import itemRoute from "./routes/itemRoute.js";

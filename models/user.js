@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     minlength: [8, "Must be at least 8 characters long"],
-    maxlength: [17, "17 characters is the max"],
+    maxlength: [40, "40 characters is the max"],
   },
   username: { type: String, required: true, unique: true },
   name: {

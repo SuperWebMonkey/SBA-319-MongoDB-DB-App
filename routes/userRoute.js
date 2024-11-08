@@ -6,8 +6,9 @@ const router = express.Router();
 // Get all users
 router.get("/", async (req, res) => {
   try {
-    const users = await users.find();
-    res.json(users);
+    const allUsers = await users.find();
+    console.log("Fetched users:", allUsers);
+    res.json(allUsers);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch users" });
   }
