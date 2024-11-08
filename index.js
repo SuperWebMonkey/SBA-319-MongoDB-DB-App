@@ -5,6 +5,8 @@ import grades_agg from "./routes/grades_agg.js";
 import Admins from "./models/admin.js";
 import Items from "./models/item.js";
 import Users from "./models/user.js";
+import userRoute from "./routes/userRoute.js";
+import itemRoute from "./routes/itemRoute.js";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -18,19 +20,11 @@ import connDB from "./db/conn.js";
 connDB();
 
 // Routes
-// app.use('/', itemRoute);
+app.use("/users", userRoute);
+app.use("/items", itemRoute);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API");
-});
-
-app.get("/users", async (req, res) => {
-  try {
-    const users = await Users.find();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch users" });
-  }
 });
 
 app.get("/items", async (req, res) => {

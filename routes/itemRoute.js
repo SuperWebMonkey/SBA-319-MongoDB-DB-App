@@ -1,10 +1,10 @@
 import items from "../models/item.js";
+import express from "express";
 
-const express = require("express");
 const router = express.Router();
 
 // Post request to items
-router.post("/items", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { title, price, description } = req.body;
 
@@ -26,7 +26,7 @@ router.post("/items", async (req, res) => {
   }
 });
 
-router.put("/items/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const newUpdate = req.body;
@@ -50,7 +50,7 @@ router.put("/items/:id", async (req, res) => {
   }
 });
 
-router.delete("/items:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const removedItem = await items.findByIdAndDelete(id);
@@ -68,3 +68,5 @@ router.delete("/items:id", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+export default router;
