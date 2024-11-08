@@ -33,6 +33,7 @@ Each data collection has a get, post, delete, and put operations using mongoose.
   application/json for the data.
 - Also for post and put, create an object and add all key value pairs that
   are necessary for the request. 
+- Delete just needs the api at the end 
 
 ## api endpionts
 
@@ -41,9 +42,11 @@ Each data collection has a get, post, delete, and put operations using mongoose.
 - localhost:3000/users/:id | Show the specific user based on the id
 - localhost:3000/items | shows the entire items collection
 - localhost:3000/items:id | shows the specific item based on id
+- GET localhost:3000/users | returns the list of all users
 - POST localhost:3000/users | POST new user to users
 - PUT localhost:3000/users:id | Updates the specific user
 - DELETE localhost:3000/users:id | Delete the specific user
+- GET localhost:3000/items | returns the list of all items
 - POST localhost:3000/items | POST new item to items
 - PUT localhost:3000/items:id | Updates the specific item
 - DELETE localhost:3000/items:id | Delete the specific item
