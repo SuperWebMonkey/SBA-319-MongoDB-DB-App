@@ -80,6 +80,8 @@ const seed = async () => {
       { location: "Winterfell", owner: "Jon Snow" },
       { location: "Westerland", owner: "Tyrion Lannister" },
       { location: "Black Meteor", owner: "Sephiroth" },
+      { location: "7th Heaven", owner: "Tifa" },
+      { location: "Shinra", owner: "Rufus" },
     ];
 
     const db = mongoose.connection.db;

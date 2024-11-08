@@ -5,8 +5,8 @@ const storeSchema = new mongoose.Schema({
   owner: { type: String, required: true },
 });
 
-// storeSchema.index({ location: 1 });
-// storeSchema.index({ owner: 1 });
+storeSchema.index({ location: 1 });
+storeSchema.index({ owner: 1 });
 
 storeSchema.methods.getStores = function (obj) {
   return mongoose

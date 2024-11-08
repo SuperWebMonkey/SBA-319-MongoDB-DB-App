@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+userSchema.index({ email: 1 });
 userSchema.index({ password: 1 });
 userSchema.index({ username: 1 });
 userSchema.index({ name: 1 });
